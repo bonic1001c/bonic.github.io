@@ -263,6 +263,20 @@ img {
   border: 1px solid var(--line);
   border-radius: 20px;
   color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.cat:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.cat.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
 }
 
 /* 文章列表標題 */

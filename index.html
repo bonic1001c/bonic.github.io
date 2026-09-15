@@ -20,11 +20,11 @@
         <span class="en">DAILY TRACE</span>
       </div>
     </div>
-    <nav class="nav">
-      <a href="#all" class="active">全部</a>
-      <a href="#life">生活</a>
-      <a href="#travel">旅遊</a>
-      <a href="#finance">財經</a>
+    <nav class="nav" id="main-nav">
+      <a href="#" data-filter="all" class="active">全部</a>
+      <a href="#" data-filter="life">生活</a>
+      <a href="#" data-filter="travel">旅遊</a>
+      <a href="#" data-filter="finance">財經</a>
     </nav>
   </header>
 
@@ -68,16 +68,16 @@
       </article>
 
       <!-- 分類標籤 -->
-      <div class="category-bar">
-        <span class="cat">生活</span>
-        <span class="cat">旅遊</span>
-        <span class="cat">財經</span>
+      <div class="category-bar" id="cat-bar">
+        <span class="cat" data-filter="life">生活</span>
+        <span class="cat" data-filter="travel">旅遊</span>
+        <span class="cat" data-filter="finance">財經</span>
       </div>
 
       <!-- 文章列表 -->
       <div class="archive-header">
-        <h3>ARCHIVE / 全部</h3>
-        <div class="archive-meta">最近留下的頁 · 09 ENTRIES</div>
+        <h3 id="archive-title">ARCHIVE / 全部</h3>
+        <div class="archive-meta" id="archive-meta">最近留下的頁 · 09 ENTRIES</div>
       </div>
 
       <div class="entry-list" id="all">
@@ -255,6 +255,59 @@
       <span class="footer-note">寫下今天</span>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      const labels = {
+        all: '全部',
+        life: '生活',
+        travel: '旅遊',
+        finance: '財經'
+      };
+
+      function filterEntries(cat) {
+        const entries = document.querySelectorAll('.entry');
+        let visible = 0;
+
+        entries.forEach(function (el) {
+          const match = cat === 'all' || el.getAttribute('data-cat') === cat;
+          el.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+
+        // 更新標題與數量
+        const title = document.getElementById('archive-title');
+        const meta = document.getElementById('archive-meta');
+        if (title) title.textContent = 'ARCHIVE / ' + (labels[cat] || cat);
+        if (meta) meta.textContent = '最近留下的頁 · ' + visible + ' ENTRIES';
+
+        // 更新導覽 active
+        document.querySelectorAll('#main-nav a').forEach(function (a) {
+          a.classList.toggle('active', a.getAttribute('data-filter') === cat);
+        });
+
+        // 更新分類標籤 active
+        document.querySelectorAll('#cat-bar .cat').forEach(function (span) {
+          span.classList.toggle('active', span.getAttribute('data-filter') === cat);
+        });
+      }
+
+      // 頂部導覽
+      document.querySelectorAll('#main-nav a').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          filterEntries(a.getAttribute('data-filter'));
+        });
+      });
+
+      // 分類標籤列
+      document.querySelectorAll('#cat-bar .cat').forEach(function (span) {
+        span.addEventListener('click', function () {
+          filterEntries(span.getAttribute('data-filter'));
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>
