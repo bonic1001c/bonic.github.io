@@ -113,7 +113,6 @@ img {
   min-height: 80vh;
 }
 
-/* 左側邊欄 */
 .sidebar {
   padding: 48px 28px 40px 40px;
   border-right: 1px solid var(--line);
@@ -146,7 +145,6 @@ img {
   color: var(--text);
 }
 
-/* 主要內容區 */
 .content {
   padding: 48px 48px 80px 48px;
 }
@@ -193,7 +191,6 @@ img {
   max-width: 520px;
 }
 
-/* 精選區塊 */
 .featured {
   margin-bottom: 40px;
 }
@@ -250,7 +247,6 @@ img {
   border-color: white;
 }
 
-/* 分類標籤 */
 .category-bar {
   display: flex;
   gap: 12px;
@@ -279,7 +275,6 @@ img {
   color: #fff;
 }
 
-/* 文章列表標題 */
 .archive-header {
   display: flex;
   justify-content: space-between;
@@ -300,7 +295,6 @@ img {
   color: var(--text-muted);
 }
 
-/* 單篇文章 */
 .entry {
   display: grid;
   grid-template-columns: 90px 1fr;
@@ -372,7 +366,6 @@ img {
   color: var(--text-muted);
 }
 
-/* ========== 頁尾 ========== */
 .site-footer {
   border-top: 1px solid var(--line);
   background: var(--bg-soft);
@@ -394,7 +387,6 @@ img {
   color: var(--text);
 }
 
-/* ========== 手機版 ========== */
 @media (max-width: 800px) {
   .site-header {
     padding: 14px 20px;
